@@ -30,6 +30,9 @@ class LoginRepository extends BaseRepository implements LoginInterface
 
    public function findByUsername(string $username)
    {
-       return $this->model->where('username', $username)->first();
+       return $this
+                ->model
+                ->select('username', 'password', 'role')
+                ->where('username', $username)->first();
    }
 }

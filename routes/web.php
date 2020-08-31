@@ -18,3 +18,12 @@ $router->group(['namespace' => 'Auth'], function() use ($router)
     $router->post('auth/register', 'RegisterController@register');
     $router->post('auth/login', 'LoginController@login');
 });
+
+
+$router->group(['namespace' => 'Event'], function() use ($router)
+{
+    $router->get('event/getAll' ,'EventController@getAll');
+});
+
+
+

@@ -36,7 +36,7 @@ class LoginController extends Controller
                 return response()->json(['message' => 'Unauthorized'], 401);
             }
 
-            return $this->respondWithToken($token);
+            return $this->respondWithToken($token, $user->role);
 
         } else {
             return response()->json(['Message' => 'User not found']);
