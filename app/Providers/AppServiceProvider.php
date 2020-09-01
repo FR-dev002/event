@@ -17,5 +17,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->register(RepositoryServiceProvider::class);
         $this->app->register(AuthServiceProviderV1::class);
+        $this->app->register(EventServiceProviderV1::class);
+
     }
 }

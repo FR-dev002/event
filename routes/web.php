@@ -23,6 +23,8 @@ $router->group(['namespace' => 'Auth'], function() use ($router)
 $router->group(['namespace' => 'Event'], function() use ($router)
 {
     $router->get('event/getAll' ,'EventController@getAll');
+    $router->get('event/getAll/byUser' ,'EventController@getByUser');
+    $router->post('event/store' ,'EventController@store');
 });
 
 

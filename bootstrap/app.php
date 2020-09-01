@@ -48,6 +48,14 @@ $app->singleton(
     App\Console\Kernel::class
 );
 
+$app->singleton('filesystem', function ($app) {
+    return $app->loadComponent(
+        'filesystems',
+        Illuminate\Filesystem\FilesystemServiceProvider::class,
+        'filesystem'
+    );
+});
+
 /*
 |--------------------------------------------------------------------------
 | Register Config Files
@@ -61,6 +69,7 @@ $app->singleton(
 
 $app->configure('app');
 $app->configure('swagger-lume');
+$app->configure('filesystems');
 
 
 /*
@@ -74,9 +83,9 @@ $app->configure('swagger-lume');
 |
 */
 
-// $app->middleware([
-    // App\Http\Middleware\JwtMiddleware::class
-// ]);
+$app->middleware([
+    App\Http\Middleware\CorsMiddleware::class
+ ]);
 
 $app->routeMiddleware([
     'jwt.verify' => App\Http\Middleware\JwtMiddleware::class,
@@ -101,8 +110,7 @@ $app->register(Pearl\RequestValidate\RequestServiceProvider::class);
 $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
 $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 $app->register(Chuckrincon\LumenConfigDiscover\DiscoverServiceProvider::class);
-
-
+$app->register(Illuminate\Filesystem\FilesystemServiceProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes
@@ -113,6 +121,7 @@ $app->register(Chuckrincon\LumenConfigDiscover\DiscoverServiceProvider::class);
 | can respond to, as well as the controllers that may handle them.
 |
 */
+
 
 $app->router->group([
     'namespace' => 'App\Http\Controllers',

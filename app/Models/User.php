@@ -47,4 +47,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         return [];
     }
+
+
+    // TODO List Relasi
+    public function event()
+    {
+        return $this->hasMany('App\Models\Event');
+    }
 }

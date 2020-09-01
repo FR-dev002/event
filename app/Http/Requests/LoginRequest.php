@@ -24,7 +24,7 @@ class LoginRequest extends RequestAbstract
     public function rules(): array
     {
         return [
-            "username" => "required",
+            'username' => 'required|max:255|min:5',
             "password" => "required"
         ];
     }
@@ -37,6 +37,9 @@ class LoginRequest extends RequestAbstract
     public function messages(): array
     {
         return [
+            'username.required'  => 'username harus diisi',
+            'username.min'  => 'MInimal username 5 Karakter',
+            'username.max'  => 'Maksimal username 255 Karakter',
             "password.required" => 'Password'
         ];
     }
